@@ -12,17 +12,6 @@ from ui.base_case import BaseCase
 from ui.pages.base_page import BasePage
 
 class TestLogin(BaseCase):
-    authorize = False
-
-    @pytest.mark.skip("SKIP")
-    def test_login(self, credentials):
-        login_page = LoginPage(self.driver)
-        login_page.login(*credentials)
-
-        time.sleep(5)
-
-
-class TestLK(BaseCase):
 
     def test_lk1(self):
         time.sleep(5)
