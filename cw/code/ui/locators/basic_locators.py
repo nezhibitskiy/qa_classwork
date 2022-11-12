@@ -7,11 +7,12 @@ class BasePageLocators:
     START_SHELL = (By.ID, 'start-shell')
     PYTHON_CONSOLE = (By.ID, 'hterm:row-nodes')
     LOGIN_BUTTON = (By.CLASS_NAME, 'responseHead-module-button-2yl51i')
-    HEADER_PRO = (By.XPATH, '//a[@href="/pro"]')
-    HEADER_PROFILE = (By.XPATH, '//a[@href="/profile"]')
-    HEADER_SEGMENTS = (By.XPATH, '//a[@href="/segments"]')
-    HEADER_BILLING = (By.XPATH, '//a[@href="/billing"]')
-    HEADER_TOOLS = (By.XPATH, '//a[@href="/tools"]')
+    
+    BUTTON_PRO = (By.XPATH, '//a[@href="/pro"]')
+    BUTTON_PROFILE = (By.XPATH, '//a[@href="/profile"]')
+    BUTTON_SEGMENTS = (By.XPATH, '//a[@href="/segments"]')
+    BUTTON_BILLING = (By.XPATH, '//a[@href="/billing"]')
+    BUTTON_TOOLS = (By.XPATH, '//a[@href="/tools"]')
 
 class LoginPageLocators(BasePageLocators):
     LOGIN_INPUT = (By.XPATH, '//input[@name = "email"]')

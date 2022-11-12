@@ -45,7 +45,7 @@ def base_page(driver):
 
 @pytest.fixture(scope='session')
 def credentials():
-    with open('/Users/inezhibitskiy/Documents/creds', 'r') as f:
+    with open('/home/ilyas/technopark/3semestr/QA/creds', 'r') as f:
         login = f.readline().strip()
         password = f.readline().strip()
 

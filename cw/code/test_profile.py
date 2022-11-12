@@ -1,12 +1,12 @@
 import random
-from ui.base_case import BaseCase
+from ui.login_setup.base_case import BaseCase
 
 
-class TestNotification(BaseCase):
+class TestProfileNotification(BaseCase):
     authorize = True
     url = 'https://target-sandbox.my.com/profile/notifications'
 
-    def test_change_notifications_themes(self):
+    def test_change_notifications(self):
         self.driver.get(self.url)
         self.base_page.is_opened(self.url, 15)
         checkbox_elems = self.base_page.find_all_elemets(
@@ -32,11 +32,11 @@ class TestNotification(BaseCase):
         assert expected_values_checkbox_elems == values_checkbox_elems
 
 
-class TestContacts(BaseCase):
+class TestProfileContacts(BaseCase):
     authorize = True
     url = 'https://target-sandbox.my.com/profile/contacts'
-
-    def test_change_fio(self):
+    
+    def test_change_personal_data(self):
         self.driver.get(self.url)
         self.base_page.is_opened(self.url, 15)
         inn_elem = self.base_page.find(self.profile_page.locators.CONTACT_INN, 15)
