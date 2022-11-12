@@ -1,5 +1,5 @@
 import random
-from ui.login_setup.base_case import BaseCase
+from ui.base_case import BaseCase
 
 
 class TestProfileNotification(BaseCase):
@@ -9,27 +9,22 @@ class TestProfileNotification(BaseCase):
     def test_change_notifications(self):
         self.driver.get(self.url)
         self.base_page.is_opened(self.url, 15)
-        checkbox_elems = self.base_page.find_all_elemets(
-            self.profile_page.locators.NOTIFICATION_THEMES,15)
-        expected_values_checkbox_elems = self.profile_page.get_notification_themes_values(
-            checkbox_elems)
+        
+        elemets = self.base_page.find_all_elemets(self.profile_page.locators.NOTIFICATIONS,15)
+        expected = self.profile_page.get_notifications_status(elemets)
 
-        pos_to_swicth = [0,3,9]
+        pos_to_swicth = [0,1,2,9]
 
         for pos in pos_to_swicth:
-            expected_values_checkbox_elems[pos] = not expected_values_checkbox_elems[pos]
-            self.base_page.elem_click(checkbox_elems[pos], 15)
+            expected[pos] = not expected[pos]
+            self.base_page.elem_click(elemets[pos], 15)
 
-        self.base_page.click(
-            self.profile_page.locators.SAVE_NOTIFICATION_THEMES, 15)
+        self.base_page.click(self.profile_page.locators.SAVE_NOTIFICATIONS, 15)
+        self.base_page.wait_visability_of_elem(self.profile_page.locators.SUCCESS_SAVE_NOTIFICATIONS, 15)
 
-        self.base_page.wait_visability_of_elem(
-            self.profile_page.locators.SUCCESS_SAVE_NOTIFICATION_THEMES, 15)
+        result = self.profile_page.get_notifications_status(elemets)
 
-        values_checkbox_elems = self.profile_page.get_notification_themes_values(
-            checkbox_elems)
-
-        assert expected_values_checkbox_elems == values_checkbox_elems
+        assert expected == result
 
 
 class TestProfileContacts(BaseCase):
@@ -39,23 +34,24 @@ class TestProfileContacts(BaseCase):
     def test_change_personal_data(self):
         self.driver.get(self.url)
         self.base_page.is_opened(self.url, 15)
-        inn_elem = self.base_page.find(self.profile_page.locators.CONTACT_INN, 15)
 
-        if inn_elem.get_attribute('value') != "":
-            expected_inn_val = list(inn_elem.get_attribute('value'))
-            expected_inn_val[0] = chr(
-                (int(expected_inn_val[0])+1) % 10 + ord('0'))
-            expected_inn_val=''.join(expected_inn_val)
+        input_field = self.base_page.find(self.profile_page.locators.CONTACT_INPUT_FIELD, 15)
+
+        if input_field.get_attribute('value') != "":
+            expected = list(input_field.get_attribute('value'))
+            expected[0] = chr(
+                (int(expected[0])+1) % 10 + ord('0'))
+            expected=''.join(expected)
         else:
-            expected_inn_val = '1234567899'
+            expected = 'test_data'
 
-        self.base_page.send_keys(inn_elem, expected_inn_val)
+        self.base_page.send_keys(input_field, expected)
 
         self.base_page.click(
-            self.profile_page.locators.SAVE_CONTANTS, 15)
+            self.profile_page.locators.SAVE_CONTACTS, 15)
 
         self.base_page.wait_visability_of_elem(
             self.profile_page.locators.SUCCESS_SAVE_CONTACTS, 15)
 
-        upd_inn_elem = self.base_page.find(self.profile_page.locators.CONTACT_INN, 15)
-        assert upd_inn_elem.get_attribute('value') == expected_inn_val
+        updated_input_field = self.base_page.find(self.profile_page.locators.CONTACT_INPUT_FIELD, 15)
+        assert updated_input_field.get_attribute('value') == expected

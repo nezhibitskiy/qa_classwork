@@ -20,9 +20,10 @@ class LoginPageLocators(BasePageLocators):
     PASS_LOGIN_CREDS_BUTTON = (By.CLASS_NAME, 'authForm-module-button-1u2DYF')
 
 class ProfilePageLocators(BasePageLocators):
-    NOTIFICATION_THEMES = (By.XPATH, '//input[@class="profile__list__row__box js-mailing-item" and @type="checkbox"]')
-    SAVE_NOTIFICATION_THEMES = (By.XPATH, '//div[@class="button__text" and text() = "Сохранить"]')
-    SUCCESS_SAVE_NOTIFICATION_THEMES = (By.XPATH, '//div[@class="_notification__content js-notification-content" and text() = "Информация успешно сохранена"]')
-    CONTACT_INN=(By.XPATH, '//div[@class="input" and @data-name = "ordInn"]/div/input')
-    SAVE_CONTANTS = (By.XPATH, '//div[@class="button__text" and text() = "Сохранить"]')
+    NOTIFICATIONS = (By.XPATH, '//input[@class="profile__list__row__box js-mailing-item" and @type="checkbox"]')
+    SAVE_NOTIFICATIONS = (By.XPATH, '//div[@class="button__text" and text() = "Сохранить"]')
+    SUCCESS_SAVE_NOTIFICATIONS = (By.XPATH, '//div[@class="_notification__content js-notification-content" and text() = "Информация успешно сохранена"]')
+    
+    CONTACT_INPUT_FIELD=(By.XPATH, '//div[@class="input" and @data-name = "ordInn"]/div/input')
+    SAVE_CONTACTS = (By.XPATH, '//div[@class="button__text" and text() = "Сохранить"]')
     SUCCESS_SAVE_CONTACTS = (By.XPATH, '//div[@class="_notification__content js-notification-content" and text() = "Информация успешно сохранена"]')
